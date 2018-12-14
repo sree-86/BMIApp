@@ -11,6 +11,8 @@ import UIKit
 class BMITableTableViewController: UITableViewController {
     
     var bmidata : [BMICoreData] = []
+    
+    var selectedBMI : BMICoreData?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,11 +57,9 @@ class BMITableTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tablecell", for: indexPath)
         let bmicell = bmidata[indexPath.row]
         
-        
-        
         // Configure the cell...
         
-        cell.textLabel?.text = "Height: \(bmicell.height) & Weight: \(bmicell.weight) "
+        cell.textLabel?.text = "Height: \(bmicell.height)  \nWeight: \(bmicell.weight) \nBMI: \(bmicell.bmival)"
         
         return cell
     }

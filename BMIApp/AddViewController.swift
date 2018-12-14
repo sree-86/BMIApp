@@ -12,6 +12,7 @@ class AddViewController: UIViewController, UITextFieldDelegate {
     
     var bmicalc = 0
 
+    @IBOutlet weak var unitSwitch: UISwitch!
     @IBOutlet weak var heightText: UITextView!
     @IBOutlet weak var weightText: UITextView!
     
@@ -31,30 +32,53 @@ class AddViewController: UIViewController, UITextFieldDelegate {
     @IBAction func heightValueDidChange(_ sender: UISlider) {
         
         let currentValue = Float(sender.value)
-        heightText.text = "\(currentValue) centimetres"
+        if unitSwitch.isOn{
+            heightText.text = "\(currentValue) inches"
+        }
+        else{
+            heightText.text = "\(currentValue) centimetres"
+        }
         self.calculateBMI()
     }
     
     
     @IBAction func weightValueDidChange(_ sender: UISlider) {
-        
         let currentValue = Float(sender.value)
-        weightText.text = "\(currentValue) kilograms"
+        if unitSwitch.isOn{
+            weightText.text = "\(currentValue) lbs"
+        }
+        else{
+            weightText.text = "\(currentValue) kgs"
+        }
         self.calculateBMI()
     }
     
     
     
     private func calculateBMI() {
-        let height: Float = heightSlider.value
-        let htmetre = height/100
-        let weight: Float = weightSlider.value
-        let bmi: Float = (weight / (htmetre*htmetre))
         
-        BMIValue.text = "\(bmi)"
-        self.changeStatus(bmi: bmi)
-        
-        bmicalc = Int(Float(bmi))
+        if unitSwitch.isOn{
+            let htimp: Float = heightSlider.value
+            let height = htimp/2.54
+            let wtimp: Float = weightSlider.value
+            let weight = wtimp*2.205
+            let bmi: Float = (weight / (height*height))*703
+            BMIValue.text = "\(bmi)"
+            self.changeStatus(bmi: bmi)
+            
+            bmicalc = Int(Float(bmi))
+        }
+        else{
+            let htcm: Float = heightSlider.value
+            let height = htcm/100
+            let weight: Float = weightSlider.value
+            
+            let bmi: Float = (weight / (height*height))
+            BMIValue.text = "\(bmi)"
+            self.changeStatus(bmi: bmi)
+            
+            bmicalc = Int(Float(bmi))
+        }
     }
     
     private func changeStatus(bmi: Float) {
