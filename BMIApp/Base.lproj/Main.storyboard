@@ -207,7 +207,7 @@
                             <outlet property="delegate" destination="x5N-ZT-h9Q" id="hHJ-dj-Za6"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Item" id="gbN-DR-NS7"/>
+                    <tabBarItem key="tabBarItem" title="Weight History" id="gbN-DR-NS7"/>
                     <navigationItem key="navigationItem" title="Weight History" id="33U-7c-jUf">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="3ca-IS-fnw"/>
                     </navigationItem>
