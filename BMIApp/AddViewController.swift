@@ -10,17 +10,10 @@ import UIKit
 
 class AddViewController: UIViewController, UITextFieldDelegate {
 
+    @IBOutlet weak var heightText: UITextView!
+    @IBOutlet weak var weightText: UITextView!
     
-    
-    
-
-    
-
-    
-    @IBOutlet weak var heightLabel: UILabel!
-    @IBOutlet weak var weightLabel: UILabel!
-    
-    @IBOutlet weak var Value: UILabel!
+    @IBOutlet weak var BMIValue: UITextField!
     @IBOutlet weak var BMIButton: UIButton!
     
     @IBOutlet weak var heightSlider: UISlider!
@@ -31,14 +24,24 @@ class AddViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        // Status Label
-        statusLabel.layer.masksToBounds = true
-        statusLabel.layer.cornerRadius = 5
+    
     }
     
-
+    @IBAction func heightValueDidChange(_ sender: UISlider) {
+        
+        let currentValue = Float(sender.value)
+        heightText.text = "\(currentValue) centimetres"
+    }
+    
+    
+    @IBAction func weightValueDidChange(_ sender: UISlider) {
+        
+        let currentValue = Float(sender.value)
+        weightText.text = "\(currentValue) kilograms"
+    }
+    
+    
+    
 
 
 }
