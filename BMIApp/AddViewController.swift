@@ -11,6 +11,8 @@ import UIKit
 class AddViewController: UIViewController, UITextFieldDelegate {
     
     var bmicalc = 0
+    var bmicorecalc = 0.0
+
 
     @IBOutlet weak var unitSwitch: UISwitch!
     @IBOutlet weak var heightText: UITextView!
@@ -40,6 +42,8 @@ class AddViewController: UIViewController, UITextFieldDelegate {
         }
         self.calculateBMI()
     }
+    
+
     
     
     @IBAction func weightValueDidChange(_ sender: UISlider) {
@@ -76,7 +80,7 @@ class AddViewController: UIViewController, UITextFieldDelegate {
             let bmi: Float = (weight / (height*height))
             BMIValue.text = "\(bmi)"
             self.changeStatus(bmi: bmi)
-            
+            bmicorecalc = Double(bmi)
             bmicalc = Int(Float(bmi))
         }
     }
@@ -100,7 +104,10 @@ class AddViewController: UIViewController, UITextFieldDelegate {
             statusLabel.text = "Obese Class III"
         }
     }
-
+    
+    
+   
+    
 
     @IBAction func AddRecord(_ sender: UIButton) {
         if let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
@@ -109,7 +116,8 @@ class AddViewController: UIViewController, UITextFieldDelegate {
             
             bmi.height = Double(heightSlider.value)
             bmi.weight = Double(weightSlider.value)
-            bmi.bmival = Double(bmicalc)
+            bmi.bmival = Double(bmicorecalc)
+    
 
             try? context.save()
         }
@@ -117,4 +125,6 @@ class AddViewController: UIViewController, UITextFieldDelegate {
     
     
 }
+
+
 
