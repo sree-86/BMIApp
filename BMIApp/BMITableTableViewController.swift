@@ -64,7 +64,23 @@ class BMITableTableViewController: UITableViewController {
         return cell
     }
     
-    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
+        {
+            
+            if editingStyle == UITableViewCell.EditingStyle.delete {
+                context.delete(bmidata[indexPath.row])
+                do {
+                    try context.save()
+                    tableView.reloadData()
+                } catch let error as NSError {
+                    print("Could not save. \(error), \(error.userInfo)")
+                }
+            }
+        }
+        
+    }
     
 
     /*
