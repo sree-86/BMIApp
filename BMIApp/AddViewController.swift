@@ -14,7 +14,6 @@ class AddViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var weightText: UITextView!
     
     @IBOutlet weak var BMIValue: UITextField!
-    @IBOutlet weak var BMIButton: UIButton!
     
     @IBOutlet weak var heightSlider: UISlider!
     @IBOutlet weak var weightSlider: UISlider!
@@ -75,5 +74,18 @@ class AddViewController: UIViewController, UITextFieldDelegate {
     }
 
 
+    @IBAction func AddRecord(_ sender: UIButton) {
+        if let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
+        {
+            let bmi = BMICoreData(entity: BMICoreData.entity(), insertInto: context)
+            
+            bmi.height = Double(heightSlider.value)
+            bmi.weight = Double(weightSlider.value)
+
+            try? context.save()
+        }
+    }
+    
+    
 }
 
