@@ -31,7 +31,7 @@ class BMITableTableViewController: UITableViewController {
         if let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
         {
             
-            if let coreDatabmi = try? context.fetch(ToDoCoreData.fetchRequest()) as? [BMICoreData]
+            if let coreDatabmi = try? context.fetch(BMICoreData.fetchRequest()) as? [BMICoreData]
             {
                 if let corebmi = coreDatabmi
                 {
@@ -49,6 +49,19 @@ class BMITableTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return bmidata.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "tablecell", for: indexPath)
+        let bmicell = bmidata[indexPath.row]
+        
+        
+        
+        // Configure the cell...
+        
+        cell.textLabel?.text = "Height: \(bmicell.height) & Weight: \(bmicell.weight) "
+        
+        return cell
     }
     
     

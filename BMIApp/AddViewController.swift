@@ -9,6 +9,8 @@
 import UIKit
 
 class AddViewController: UIViewController, UITextFieldDelegate {
+    
+    var bmicalc = 0
 
     @IBOutlet weak var heightText: UITextView!
     @IBOutlet weak var weightText: UITextView!
@@ -51,6 +53,8 @@ class AddViewController: UIViewController, UITextFieldDelegate {
         
         BMIValue.text = "\(bmi)"
         self.changeStatus(bmi: bmi)
+        
+        bmicalc = Int(Float(bmi))
     }
     
     private func changeStatus(bmi: Float) {
@@ -81,6 +85,7 @@ class AddViewController: UIViewController, UITextFieldDelegate {
             
             bmi.height = Double(heightSlider.value)
             bmi.weight = Double(weightSlider.value)
+            bmi.bmival = Double(bmicalc)
 
             try? context.save()
         }
