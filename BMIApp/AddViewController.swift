@@ -16,7 +16,8 @@ class AddViewController: UIViewController, UITextFieldDelegate {
     
     var bmicalc = 0 //variable for bmi calculation in int
     var bmicorecalc = 0.0 //variable for bmi calculation in double
-
+    @IBOutlet var items: [UITextField]!
+    
     //outlets for the textlabels
     @IBOutlet weak var name: UITextField!
     @IBOutlet weak var age: UITextField!
@@ -131,7 +132,21 @@ class AddViewController: UIViewController, UITextFieldDelegate {
     
    
     
-
+    @IBAction func reset(_ sender: UIButton) {
+        items.forEach({$0.text=""})
+        heightSlider.value = 0.5
+        weightSlider.value = 0.5
+        BMIValue.text = ""
+        statusLabel.text = ""
+        let namec = name.text!
+        UserDefaults.standard.set(namec, forKey: "myName")
+        let agec = age.text!
+        UserDefaults.standard.set(agec, forKey: "myAge")
+        let genderc = gender.text!
+        UserDefaults.standard.set(genderc, forKey: "myGender")
+        
+    }
+    
     @IBAction func AddRecord(_ sender: UIButton) {  //add to coredata
         let namec = name.text!
         UserDefaults.standard.set(namec, forKey: "myName")
