@@ -5,14 +5,19 @@
 //  Created by Sreeram Ramakrishnan on 2018-12-13.
 //  Copyright © 2018 Centennial College. All rights reserved.
 //
+//File Name: AddViewController.swift
+//Author's Name: Sreeram Ramakrishnan
+//Student ID: 301042442
+//Date: December 13, 2014
 
 import UIKit
 
 class AddViewController: UIViewController, UITextFieldDelegate {
     
-    var bmicalc = 0
-    var bmicorecalc = 0.0
+    var bmicalc = 0 //variable for bmi calculation in int
+    var bmicorecalc = 0.0 //variable for bmi calculation in double
 
+    //outlets for the textlabels
 
     @IBOutlet weak var unitSwitch: UISwitch!
     @IBOutlet weak var heightText: UITextView!
@@ -31,7 +36,7 @@ class AddViewController: UIViewController, UITextFieldDelegate {
     
     }
     
-    @IBAction func heightValueDidChange(_ sender: UISlider) {
+    @IBAction func heightValueDidChange(_ sender: UISlider) { //when height slider changes
         
         let currentValue = Float(sender.value)
         if unitSwitch.isOn{
@@ -46,7 +51,7 @@ class AddViewController: UIViewController, UITextFieldDelegate {
 
     
     
-    @IBAction func weightValueDidChange(_ sender: UISlider) {
+    @IBAction func weightValueDidChange(_ sender: UISlider) {  //when weight slider changes
         let currentValue = Float(sender.value)
         if unitSwitch.isOn{
             weightText.text = "\(currentValue) lbs"
@@ -59,7 +64,7 @@ class AddViewController: UIViewController, UITextFieldDelegate {
     
     
     
-    private func calculateBMI() {
+    private func calculateBMI() {  //calculate BMI using the slider
         
         if unitSwitch.isOn{
             let htimp: Float = heightSlider.value
@@ -85,7 +90,7 @@ class AddViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    private func changeStatus(bmi: Float) {
+    private func changeStatus(bmi: Float) {  //provide bmi message
         if (bmi < 16) {
             statusLabel.text = "Severe Thinness"
         } else if (bmi >= 16 && bmi < 17) {
@@ -109,7 +114,7 @@ class AddViewController: UIViewController, UITextFieldDelegate {
    
     
 
-    @IBAction func AddRecord(_ sender: UIButton) {
+    @IBAction func AddRecord(_ sender: UIButton) {  //add to coredata
         if let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
         {
             let bmi = BMICoreData(entity: BMICoreData.entity(), insertInto: context)

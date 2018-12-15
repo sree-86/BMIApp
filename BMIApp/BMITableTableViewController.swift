@@ -5,12 +5,16 @@
 //  Created by Sreeram Ramakrishnan on 2018-12-13.
 //  Copyright © 2018 Centennial College. All rights reserved.
 //
+//File Name: BMITableViewController.swift
+//Author's Name: Sreeram Ramakrishnan
+//Student ID: 301042442
+//Date: December 13, 2014
 
 import UIKit
 
 class BMITableTableViewController: UITableViewController {
     
-    var bmidata : [BMICoreData] = []
+    var bmidata : [BMICoreData] = [] //variable for bmi core data
     
     var selectedBMI : BMICoreData?
 
@@ -26,8 +30,9 @@ class BMITableTableViewController: UITableViewController {
     
     
     override func viewWillAppear(_ animated: Bool) {
-        getbmi()
+        getbmi() //add view for table cell
     }
+    
     func getbmi()
     {
         if let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
@@ -38,7 +43,7 @@ class BMITableTableViewController: UITableViewController {
                 if let corebmi = coreDatabmi
                 {
                     bmidata = corebmi
-                    tableView.reloadData()
+                    tableView.reloadData() //reload the cells
                 }
             }
         }
@@ -59,7 +64,7 @@ class BMITableTableViewController: UITableViewController {
         
         // Configure the cell...
         
-        cell.textLabel?.text = "Height: \(bmicell.height)  \nWeight: \(bmicell.weight) \nBMI: \(bmicell.bmival)"
+        cell.textLabel?.text = "Height: \(bmicell.height)  \nWeight: \(bmicell.weight) \nBMI: \(bmicell.bmival)" //output the data to cell
         
         return cell
     }
@@ -69,7 +74,7 @@ class BMITableTableViewController: UITableViewController {
         if let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
         {
             
-            if editingStyle == UITableViewCell.EditingStyle.delete {
+            if editingStyle == UITableViewCell.EditingStyle.delete { //delete the item from cell and coredata
                 context.delete(bmidata[indexPath.row])
                 do {
                     try context.save()
