@@ -163,8 +163,11 @@
                     <tabBarItem key="tabBarItem" title="Add Weight" id="5fL-YX-rFj"/>
                     <connections>
                         <outlet property="BMIValue" destination="URC-Eu-S9N" id="3WR-Ku-XG5"/>
+                        <outlet property="age" destination="Q2K-qS-RJb" id="00g-AI-AAn"/>
+                        <outlet property="gender" destination="7Qx-Kp-Ps6" id="bdQ-9Y-1yU"/>
                         <outlet property="heightSlider" destination="9EB-g1-XOo" id="Iho-xd-Z4K"/>
                         <outlet property="heightText" destination="DqI-N1-mff" id="rse-Zd-C5Y"/>
+                        <outlet property="name" destination="Cdl-gY-hv0" id="eoD-aQ-H45"/>
                         <outlet property="statusLabel" destination="fka-YM-wad" id="D3A-a6-lQP"/>
                         <outlet property="unitSwitch" destination="uP0-5F-GhC" id="Pag-lh-akr"/>
                         <outlet property="weightSlider" destination="L4E-Dm-o5Q" id="he8-5E-Mwd"/>

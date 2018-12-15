@@ -18,7 +18,10 @@ class AddViewController: UIViewController, UITextFieldDelegate {
     var bmicorecalc = 0.0 //variable for bmi calculation in double
 
     //outlets for the textlabels
-
+    @IBOutlet weak var name: UITextField!
+    @IBOutlet weak var age: UITextField!
+    @IBOutlet weak var gender: UITextField!
+    
     @IBOutlet weak var unitSwitch: UISwitch!
     @IBOutlet weak var heightText: UITextView!
     @IBOutlet weak var weightText: UITextView!
@@ -90,6 +93,21 @@ class AddViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        if let x = UserDefaults.standard.object(forKey: "myName") as? String
+        {
+            name.text = x
+        }
+        if let y = UserDefaults.standard.object(forKey: "myAge") as? String
+        {
+            age.text = y
+        }
+        if let z = UserDefaults.standard.object(forKey: "myGender") as? String
+        {
+            gender.text = z
+        }
+    }
+    
     private func changeStatus(bmi: Float) {  //provide bmi message
         if (bmi < 16) {
             statusLabel.text = "Severe Thinness"
@@ -115,6 +133,12 @@ class AddViewController: UIViewController, UITextFieldDelegate {
     
 
     @IBAction func AddRecord(_ sender: UIButton) {  //add to coredata
+        let namec = name.text!
+        UserDefaults.standard.set(namec, forKey: "myName")
+        let agec = age.text!
+        UserDefaults.standard.set(agec, forKey: "myAge")
+        let genderc = gender.text!
+        UserDefaults.standard.set(genderc, forKey: "myGender")
         if let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
         {
             let bmi = BMICoreData(entity: BMICoreData.entity(), insertInto: context)
